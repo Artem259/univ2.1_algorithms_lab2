@@ -4,6 +4,7 @@
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    std::string s = "abbaabbab";
+    std::vector<size_t> arr = PrefixFunction(s);
     return 0;
 }
