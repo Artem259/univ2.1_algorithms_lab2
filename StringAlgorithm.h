@@ -9,5 +9,6 @@
 #include <vector>
 
 std::vector<size_t> PrefixFunction(const std::string& s);
+bool CyclicShift(const std::string& s1, const std::string& s2);
 
 #endif
