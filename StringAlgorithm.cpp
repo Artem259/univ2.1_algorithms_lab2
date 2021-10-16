@@ -6,9 +6,10 @@
 
 std::vector<size_t> PrefixFunction(const std::string& s)
 {
-    std::vector<size_t> pi(s.length(), 0);
+    size_t len = s.length();
+    std::vector<size_t> pi(len, 0);
     size_t j;
-    for(size_t i=1; i<s.length(); i++)
+    for(size_t i=1; i<len; i++)
     {
         j = pi[i-1];
         while(j>0 && s[i]!=s[j]) j = pi[j-1];
@@ -20,9 +21,11 @@ std::vector<size_t> PrefixFunction(const std::string& s)
 
 bool CyclicShift(const std::string& s1, const std::string& s2)
 {
+    size_t len = s1.length();
     size_t k = 0; //вказівник у основному рядку s1
     size_t l = 0; //вказівник у "підрядку" s2
-    if(s1.length()!=s2.length()) return false;
+    if(s2.length()!=len) return false;
+    if(len==0) return true;
     auto pi = PrefixFunction(s2);
     bool cycle = false;
     while(true)
@@ -31,24 +34,19 @@ bool CyclicShift(const std::string& s1, const std::string& s2)
         {
             k++;
             l++;
-            if(l==s2.length()) return true;
         }
         else
         {
-            if(l==0)
-            {
-                k++;
-                if(k==s1.length())
-                {
-                    if(cycle) return false;
-                    cycle = true;
-                    k=0;
-                }
-            }
-            else
-            {
-                l = pi[l-1];
-            }
+            if(l==0) k++;
+            else l = pi[l-1];
+        }
+
+        if(l==len) return true;
+        if(k==len)
+        {
+            if(cycle) return false;
+            cycle = true;
+            k=0;
         }
     }
 }

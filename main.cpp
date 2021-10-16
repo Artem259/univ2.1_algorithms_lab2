@@ -14,19 +14,44 @@ bool Test()
     output.push_back(true);
     //-------------------------------------------------------------------------------------------------//
     // Test 1
+    input1.emplace_back("abc");
+    input2.emplace_back("abc");
+    output.push_back(true);
+    //-------------------------------------------------------------------------------------------------//
+    // Test 2
     input1.emplace_back("abcc");
     input2.emplace_back("cab");
     output.push_back(false);
     //-------------------------------------------------------------------------------------------------//
-    // Test 2
-    input1.emplace_back("lolol");
-    input2.emplace_back("ololo");
+    // Test 3
+    input1.emplace_back("lololo");
+    input2.emplace_back("ololol");
     output.push_back(true);
     //-------------------------------------------------------------------------------------------------//
-    // Test 3
+    // Test 4
     input1.emplace_back("Hello, World ");
     input2.emplace_back("World Hello, ");
     output.push_back(true);
+    //-------------------------------------------------------------------------------------------------//
+    // Test 5
+    input1.emplace_back("Hello, World ");
+    input2.emplace_back("Worl# Hello, ");
+    output.push_back(false);
+    //-------------------------------------------------------------------------------------------------//
+    // Test 6
+    input1.emplace_back("");
+    input2.emplace_back("");
+    output.push_back(true);
+    //-------------------------------------------------------------------------------------------------//
+    // Test 7
+    input1.emplace_back("f");
+    input2.emplace_back("g");
+    output.push_back(false);
+    //-------------------------------------------------------------------------------------------------//
+    // Test 8
+    input1.emplace_back("fffff");
+    input2.emplace_back("ggggg");
+    output.push_back(false);
     //-------------------------------------------------------------------------------------------------//
     bool res;
     for(size_t i=0; i<input1.size(); i++)
