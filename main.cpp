@@ -7,6 +7,7 @@ bool Test()
     std::vector<std::string> input1;
     std::vector<std::string> input2;
     std::vector<bool> output;
+
     //-------------------------------------------------------------------------------------------------//
     // Test 0
     input1.emplace_back("abc");
@@ -53,6 +54,7 @@ bool Test()
     input2.emplace_back("ggggg");
     output.push_back(false);
     //-------------------------------------------------------------------------------------------------//
+
     bool res;
     for(size_t i=0; i<input1.size(); i++)
     {
