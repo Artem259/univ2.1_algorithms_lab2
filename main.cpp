@@ -54,6 +54,16 @@ bool Test()
     input2.emplace_back("ggggg");
     output.push_back(false);
     //-------------------------------------------------------------------------------------------------//
+    // Test 9
+    input1.emplace_back("abcabdabcabeabc");
+    input2.emplace_back("abcabeabcabcabd");
+    output.push_back(true);
+    //-------------------------------------------------------------------------------------------------//
+    // Test 10
+    input1.emplace_back("bbababbaa");
+    input2.emplace_back("abbaabbab");
+    output.push_back(true);
+    //-------------------------------------------------------------------------------------------------//
 
     bool res;
     for(size_t i=0; i<input1.size(); i++)
