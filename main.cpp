@@ -25,8 +25,8 @@ bool Test()
     output.push_back(false);
     //-------------------------------------------------------------------------------------------------//
     // Test 3
-    input1.emplace_back("lololo");
-    input2.emplace_back("ololol");
+    input1.emplace_back("bababa");
+    input2.emplace_back("ababab");
     output.push_back(true);
     //-------------------------------------------------------------------------------------------------//
     // Test 4
