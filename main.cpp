@@ -85,12 +85,29 @@ bool Test()
             std::cout<<"Passed ("<<time.count()<<" ms)\n";
         }
     }
-    std::cout<<"Testing passed\n";
+    std::cout<<"Testing passed\n\n";
     return true;
 }
 
 int main()
 {
     Test();
+
+    std::string a, b;
+    while(true)
+    {
+        std::cout<<"Enter T: ";
+        std::cin>>a;
+        std::cout<<"Enter T*:";
+        std::cin>>b;
+        if(CyclicShift(a,b))
+        {
+            std::cout<<"True\n\n";
+        }
+        else
+        {
+            std::cout<<"False\n\n";
+        }
+    }
     return 0;
 }
