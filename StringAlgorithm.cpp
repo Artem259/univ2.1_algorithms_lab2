@@ -25,7 +25,7 @@ bool CyclicShift(const std::string& s1, const std::string& s2)
     size_t len = s1.length();
     size_t k = 0; //вказівник у основному рядку s1
     size_t l = 0; //вказівник у "підрядку" s2
-    if(s2.length()!=len) return false; //якщо довжини вхідних рядків не рівні - рядки не циклічні
+    if(s2.length()!=len) return false; //якщо довжини вхідних рядків не рівні - рядки не є циклічними
     if(len==0) return true; //якщо рядки порожні - повертається true
     auto pi = PrefixFunction(s2); //формування префікс-масиву для рядка s2
     bool cycle = false; //перший чи других прохід рядком s1?
