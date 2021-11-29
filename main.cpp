@@ -1,113 +1,41 @@
 #include <iostream>
-#include <chrono>
 #include "StringAlgorithm.h"
-
-bool Test()
-{
-    std::vector<std::string> input1;
-    std::vector<std::string> input2;
-    std::vector<bool> output;
-
-    //-------------------------------------------------------------------------------------------------//
-    // Test 0
-    input1.emplace_back("abc");
-    input2.emplace_back("cab");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 1
-    input1.emplace_back("abc");
-    input2.emplace_back("abc");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 2
-    input1.emplace_back("abcc");
-    input2.emplace_back("cab");
-    output.push_back(false);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 3
-    input1.emplace_back("bababa");
-    input2.emplace_back("ababab");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 4
-    input1.emplace_back("Hello, World ");
-    input2.emplace_back("World Hello, ");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 5
-    input1.emplace_back("Hello, World ");
-    input2.emplace_back("Worl# Hello, ");
-    output.push_back(false);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 6
-    input1.emplace_back("");
-    input2.emplace_back("");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 7
-    input1.emplace_back("f");
-    input2.emplace_back("g");
-    output.push_back(false);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 8
-    input1.emplace_back("fffff");
-    input2.emplace_back("ggggg");
-    output.push_back(false);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 9
-    input1.emplace_back("abcabdabcabeabc");
-    input2.emplace_back("abcabeabcabcabd");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-    // Test 10
-    input1.emplace_back("bbababbaa");
-    input2.emplace_back("abbaabbab");
-    output.push_back(true);
-    //-------------------------------------------------------------------------------------------------//
-
-    bool res;
-    for(size_t i=0; i<input1.size(); i++)
-    {
-        std::cout<<"Test "<<i<<": ";
-
-        auto start = std::chrono::high_resolution_clock::now();
-        res = CyclicShift(input1[i], input2[i]);
-        auto end = std::chrono::high_resolution_clock::now();
-        auto time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-        if(res != output[i])
-        {
-            std::cout<<"Failed ("<<time.count()<<" ms)\n";
-            return false;
-        }
-        else
-        {
-            std::cout<<"Passed ("<<time.count()<<" ms)\n";
-        }
-    }
-    std::cout<<"Testing passed\n\n";
-    return true;
-}
 
 int main()
 {
-    Test();
-
-    std::string a, b;
-    while(true)
+    std::cout<<"\n Welcome to the Prefix Function Solver ^_O\n";
+    std::string input_string;
+    std::cout<<" Input string: ";
+    std::cin>>input_string;
+    std::vector<size_t> output_arr = PrefixFunction(input_string);
+    std::cout<<"\n";
+    for(size_t i=0; i<output_arr.size(); i++)
     {
-        std::cout<<"Enter T: ";
-        std::cin>>a;
-        std::cout<<"Enter T*:";
-        std::cin>>b;
-        if(CyclicShift(a,b))
+        //"       "
+        //"        ___           ___"
+        //"i=5 >> "aabsdef"="aabsdef" >> pi(5)=3
+        std::cout<<"        ";
+        for(size_t j=0; j<std::to_string(i).size(); j++) std::cout<<" ";
+        for(size_t j=0; j<=i; j++)
         {
-            std::cout<<"True\n\n";
+            if(j<output_arr[i]) std::cout<<"_";
+            else std::cout<<" ";
         }
-        else
+        std::cout<<"   ";
+        for(size_t j=0; j<=i; j++)
         {
-            std::cout<<"False\n\n";
+            if(j>i-output_arr[i]) std::cout<<"_";
+            else std::cout<<" ";
         }
+        std::cout<<"\n i="<<i<<" >> \""<<input_string.substr(0,i+1)<<"\"=\""<<input_string.substr(0,i+1)<<"\""<<" >> pi["<<i<<"]="<<output_arr[i]<<"\n";
     }
+    std::cout<<"\n pi = [";
+    for(size_t i=0; i<output_arr.size()-1; i++)
+    {
+        std::cout<<output_arr[i]<<", ";
+    }
+    std::cout<<output_arr[output_arr.size()-1]<<"]\n\n\n";
+    std::cout<<" Kubik, 2021\n";
+    system("pause");
     return 0;
 }
